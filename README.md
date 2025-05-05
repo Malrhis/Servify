@@ -1,6 +1,22 @@
-# Servify - A Platform for Service Businesses
+# Servify
 
-Servify is a platform that helps service-based businesses create their online presence, manage bookings, and handle payments efficiently.
+A Django-based platform for service-providing businesses. This platform enables service providers to manage their services, bookings, and customer interactions efficiently.
+
+## Features
+
+- User Authentication (Service Providers & Customers)
+- Service Management
+- Booking System
+- Payment Processing
+- Review & Rating System
+- Google SSO Integration
+
+## Tech Stack
+
+- Django
+- Python
+- SQLite (Development)
+- django-allauth for authentication
 
 ## Features (MVP)
 
