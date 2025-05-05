@@ -1,0 +1,22 @@
+{% load socialaccount %}
+{% load i18n %}
+
+{% get_providers as socialaccount_providers %}
+
+{% for provider in socialaccount_providers %}
+  {% if provider.id == "google" %}
+  <div class="social-auth mt-4">
+    <div class="position-relative text-center mb-3">
+      <hr class="position-absolute w-100 top-50">
+      <span class="bg-white px-2 position-relative">{% trans "or continue with" %}</span>
+    </div>
+    <div class="d-grid gap-2">
+      <a href="{% provider_login_url provider.id process='login' %}"
+         class="btn btn-outline-dark">
+        <img src="https://www.google.com/favicon.ico" alt="" width="20" height="20" class="me-2">
+        {% trans "Continue with Google" %}
+      </a>
+    </div>
+  </div>
+  {% endif %}
+{% endfor %} 
