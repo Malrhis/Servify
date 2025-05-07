@@ -1,0 +1,52 @@
+/* Custom styles */
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+/* Dark theme overrides */
+.bg-dark {
+    background-color: #1a1e23 !important;
+}
+
+.card.bg-dark {
+    background-color: #2c3038 !important;
+}
+
+.border-light {
+    border-color: #2c3038 !important;
+}
+
+/* Hero section */
+.hero {
+    padding: 6rem 0;
+    background: linear-gradient(to right, #1a1e23, #2c3038);
+    color: white;
+}
+
+/* Feature cards */
+.card {
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* Custom utilities */
+.text-gradient {
+    background: linear-gradient(45deg, #007bff, #6610f2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Responsive image */
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+} 

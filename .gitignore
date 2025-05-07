@@ -52,4 +52,7 @@ htmlcov/
 .coverage
 .coverage.*
 coverage.xml
-*.cover 
+*.cover
+
+# Attached Assets
+attached_assets/ 

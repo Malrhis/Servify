@@ -1,76 +1,216 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load static %}
 
-{% block title %}Welcome to Servify{% endblock %}
+{% block title %}Servify - A Platform for Service Businesses{% endblock %}
 
 {% block content %}
-<div class="container py-5">
-    <div class="row justify-content-center text-center">
-        <div class="col-lg-8">
-            <h1 class="display-4 mb-4">Welcome to Servify</h1>
-            <p class="lead mb-4">
-                Connect with trusted service providers or offer your services to clients.
-                Join our community today!
-            </p>
-            
-            {% if not user.is_authenticated %}
-                <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
-                    <a href="{% url 'account_signup' %}" class="btn btn-primary btn-lg px-4 gap-3">
-                        Get Started
-                    </a>
-                    <a href="{% url 'account_login' %}" class="btn btn-outline-secondary btn-lg px-4">
-                        Sign In
-                    </a>
+<section class="hero py-5 text-center">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 text-lg-start mb-5 mb-lg-0">
+                <h1 class="display-4 fw-bold mb-4">Create your own service business storefront</h1>
+                <p class="lead mb-4">Servify helps service providers like you create professional online storefronts, manage bookings, and accept payments - all in one place.</p>
+                <div class="d-flex flex-column flex-sm-row gap-3 justify-content-lg-start justify-content-center">
+                    <a href="{% url 'account_signup' %}" class="btn btn-primary btn-lg px-4">Get Started</a>
+                    <a href="#features" class="btn btn-outline-light btn-lg px-4">Learn More</a>
                 </div>
-            {% else %}
-                {% if user.is_service_provider %}
-                    <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
-                        <a href="/dashboard/" class="btn btn-primary btn-lg px-4 gap-3">
-                            Go to Dashboard
-                        </a>
-                        <a href="/services/manage/" class="btn btn-outline-primary btn-lg px-4">
-                            Manage Services
-                        </a>
+            </div>
+            <div class="col-lg-6">
+                <div class="card bg-dark shadow-lg">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 48px; height: 48px;">
+                                <i class="fas fa-cut text-white"></i>
+                            </div>
+                            <div class="ms-3">
+                                <h5 class="card-title mb-0 text-white">Sarah's Hair Studio</h5>
+                                <p class="text-muted small mb-0">Hair Styling Services</p>
+                            </div>
+                        </div>
+                        <div class="list-group mb-3">
+                            <div class="list-group-item bg-dark border-light text-white">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="mb-1">Haircut & Styling</h6>
+                                        <p class="mb-0 small text-muted">60 min</p>
+                                    </div>
+                                    <span class="badge bg-primary">$75</span>
+                                </div>
+                            </div>
+                            <div class="list-group-item bg-dark border-light text-white">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="mb-1">Color Treatment</h6>
+                                        <p class="mb-0 small text-muted">120 min</p>
+                                    </div>
+                                    <span class="badge bg-primary">$140</span>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#" class="btn btn-primary w-100">Book Appointment</a>
                     </div>
-                {% else %}
-                    <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
-                        <a href="/services/" class="btn btn-primary btn-lg px-4 gap-3">
-                            Browse Services
-                        </a>
-                        <a href="/bookings/" class="btn btn-outline-primary btn-lg px-4">
-                            My Bookings
-                        </a>
-                    </div>
-                {% endif %}
-            {% endif %}
+                </div>
+            </div>
         </div>
     </div>
+</section>
 
-    {% if not user.is_authenticated %}
-        <div class="row mt-5 pt-5">
-            <div class="col-md-6">
-                <div class="card h-100">
-                    <div class="card-body text-center">
-                        <h3 class="card-title">Looking for Services?</h3>
-                        <p class="card-text">
-                            Find trusted professionals for all your needs. Browse through our verified service providers.
-                        </p>
-                        <a href="{% url 'account_signup' %}" class="btn btn-outline-primary">Sign Up as Client</a>
+<section id="features" class="py-5 bg-dark text-white">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold">Everything you need to run your service business</h2>
+            <p class="lead">Powerful tools designed specifically for service providers</p>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 bg-dark border-light">
+                    <div class="card-body text-white">
+                        <div class="text-primary mb-3">
+                            <i class="fas fa-palette fa-2x"></i>
+                        </div>
+                        <h3 class="card-title h5">Customizable Storefront</h3>
+                        <p class="card-text text-muted">Create a beautiful, branded storefront that showcases your services. Customize colors, layout, and more.</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="card h-100">
-                    <div class="card-body text-center">
-                        <h3 class="card-title">Want to Offer Services?</h3>
-                        <p class="card-text">
-                            Join our platform as a service provider. Reach new clients and grow your business.
-                        </p>
-                        <a href="{% url 'account_signup' %}" class="btn btn-outline-primary">Register as Provider</a>
+            
+            <div class="col-md-4">
+                <div class="card h-100 bg-dark border-light">
+                    <div class="card-body text-white">
+                        <div class="text-primary mb-3">
+                            <i class="fas fa-calendar-check fa-2x"></i>
+                        </div>
+                        <h3 class="card-title h5">Smart Booking System</h3>
+                        <p class="card-text text-muted">Let clients book appointments online 24/7. Manage your availability and prevent scheduling conflicts.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card h-100 bg-dark border-light">
+                    <div class="card-body text-white">
+                        <div class="text-primary mb-3">
+                            <i class="fas fa-credit-card fa-2x"></i>
+                        </div>
+                        <h3 class="card-title h5">Secure Payments</h3>
+                        <p class="card-text text-muted">Accept deposits and full payments online. Set up no-show fees to protect your time and revenue.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card h-100 bg-dark border-light">
+                    <div class="card-body text-white">
+                        <div class="text-primary mb-3">
+                            <i class="fas fa-mobile-alt fa-2x"></i>
+                        </div>
+                        <h3 class="card-title h5">Mobile Friendly</h3>
+                        <p class="card-text text-muted">Look professional on any device. Our storefronts are fully responsive and work great on mobile.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card h-100 bg-dark border-light">
+                    <div class="card-body text-white">
+                        <div class="text-primary mb-3">
+                            <i class="fas fa-chart-line fa-2x"></i>
+                        </div>
+                        <h3 class="card-title h5">Business Analytics</h3>
+                        <p class="card-text text-muted">Track bookings, revenue, and client trends. Make better business decisions with actionable insights.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card h-100 bg-dark border-light">
+                    <div class="card-body text-white">
+                        <div class="text-primary mb-3">
+                            <i class="fas fa-cogs fa-2x"></i>
+                        </div>
+                        <h3 class="card-title h5">Easy Setup</h3>
+                        <p class="card-text text-muted">No coding required. Get your storefront up and running in minutes, not months.</p>
                     </div>
                 </div>
             </div>
         </div>
-    {% endif %}
-</div>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold">Perfect for all types of service businesses</h2>
+            <p class="lead">Join thousands of service providers who trust Servify</p>
+        </div>
+        
+        <div class="row g-4 text-center">
+            <div class="col-6 col-md-3">
+                <div class="p-4">
+                    <i class="fas fa-cut fa-3x text-primary mb-3"></i>
+                    <h5>Hair Stylists</h5>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="p-4">
+                    <i class="fas fa-spa fa-3x text-primary mb-3"></i>
+                    <h5>Wellness Coaches</h5>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="p-4">
+                    <i class="fas fa-laptop-code fa-3x text-primary mb-3"></i>
+                    <h5>Freelancers</h5>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="p-4">
+                    <i class="fas fa-paint-brush fa-3x text-primary mb-3"></i>
+                    <h5>Designers</h5>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="p-4">
+                    <i class="fas fa-dumbbell fa-3x text-primary mb-3"></i>
+                    <h5>Fitness Trainers</h5>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="p-4">
+                    <i class="fas fa-map-marked-alt fa-3x text-primary mb-3"></i>
+                    <h5>Tour Guides</h5>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="p-4">
+                    <i class="fas fa-graduation-cap fa-3x text-primary mb-3"></i>
+                    <h5>Tutors</h5>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="p-4">
+                    <i class="fas fa-microphone fa-3x text-primary mb-3"></i>
+                    <h5>Consultants</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5 bg-dark text-white">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <img src="{% static 'images/dashboard-preview.png' %}" class="img-fluid rounded shadow" alt="Servify Dashboard" onerror="this.src='https://placehold.co/600x400/2c3e50/FFFFFF/svg?text=Servify+Dashboard'">
+            </div>
+            <div class="col-lg-6">
+                <h2 class="display-5 fw-bold mb-4">Ready to grow your service business?</h2>
+                <p class="lead mb-4">Join thousands of service providers who are using Servify to attract more clients, streamline bookings, and increase their revenue.</p>
+                <a href="{% url 'account_signup' %}" class="btn btn-primary btn-lg px-4">Get Started Today</a>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %} 

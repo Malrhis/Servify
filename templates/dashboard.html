@@ -19,25 +19,29 @@
                             </div>
                         {% endif %}
                         <h5 class="mb-0">{{ user.get_full_name|default:user.email }}</h5>
-                        {% if is_provider %}
-                            <small class="text-muted">Service Provider</small>
-                        {% else %}
-                            <small class="text-muted">Client</small>
-                        {% endif %}
+                        <div class="text-muted small mt-1">
+                            {% for role in user.roles.all %}
+                                <span class="badge bg-secondary">{{ role.name|title }}</span>
+                            {% endfor %}
+                        </div>
                     </div>
                     <hr>
                     <div class="list-group list-group-flush">
                         <a href="#" class="list-group-item list-group-item-action active">Dashboard</a>
-                        {% if is_provider %}
-                            <a href="{% url 'accounts:service_provider_profile' %}" class="list-group-item list-group-item-action">Profile Settings</a>
+                        
+                        {% if user.is_service_provider %}
+                            <a href="{% url 'accounts:service_provider_profile' %}" class="list-group-item list-group-item-action">Business Profile</a>
                             <a href="#" class="list-group-item list-group-item-action">My Services</a>
-                            <a href="#" class="list-group-item list-group-item-action">Bookings</a>
-                            <a href="#" class="list-group-item list-group-item-action">Reviews</a>
-                        {% else %}
+                            <a href="#" class="list-group-item list-group-item-action">Service Bookings</a>
+                            <a href="#" class="list-group-item list-group-item-action">Business Reviews</a>
+                        {% endif %}
+                        
+                        {% if user.is_customer %}
                             <a href="#" class="list-group-item list-group-item-action">My Bookings</a>
                             <a href="#" class="list-group-item list-group-item-action">Favorites</a>
-                            <a href="#" class="list-group-item list-group-item-action">Reviews</a>
+                            <a href="#" class="list-group-item list-group-item-action">My Reviews</a>
                         {% endif %}
+                        
                         <a href="{% url 'account_email' %}" class="list-group-item list-group-item-action">Account Settings</a>
                     </div>
                 </div>
@@ -49,7 +53,7 @@
                 <div class="card-body">
                     <h2 class="card-title">Welcome, {{ user.get_full_name|default:user.email }}!</h2>
                     
-                    {% if is_provider %}
+                    {% if user.is_service_provider %}
                         <!-- Service Provider Dashboard -->
                         <div class="row g-4 py-4">
                             <div class="col-md-4">
@@ -77,13 +81,18 @@
                                 </div>
                             </div>
                         </div>
-                        
-                        <div class="mt-4">
-                            <h3>Recent Bookings</h3>
-                            <p class="text-muted">No bookings yet.</p>
-                        </div>
-                    {% else %}
-                        <!-- Client Dashboard -->
+
+                        {% if not user.business_profile.business_name %}
+                            <div class="alert alert-warning mt-4">
+                                <h5 class="alert-heading">Complete Your Business Profile</h5>
+                                <p>Please complete your business profile to start offering services on our platform.</p>
+                                <a href="{% url 'accounts:service_provider_profile' %}" class="btn btn-warning">Complete Profile</a>
+                            </div>
+                        {% endif %}
+                    {% endif %}
+
+                    {% if user.is_customer %}
+                        <!-- Customer Dashboard -->
                         <div class="row g-4 py-4">
                             <div class="col-md-4">
                                 <div class="card bg-primary text-white">
@@ -110,11 +119,14 @@
                                 </div>
                             </div>
                         </div>
-                        
-                        <div class="mt-4">
-                            <h3>Recent Services</h3>
-                            <p class="text-muted">No services booked yet.</p>
-                        </div>
+
+                        {% if not user.customer_profile.delivery_address %}
+                            <div class="alert alert-info mt-4">
+                                <h5 class="alert-heading">Complete Your Profile</h5>
+                                <p>Add your delivery address to make booking services easier.</p>
+                                <a href="#" class="btn btn-info">Update Profile</a>
+                            </div>
+                        {% endif %}
                     {% endif %}
                 </div>
             </div>
